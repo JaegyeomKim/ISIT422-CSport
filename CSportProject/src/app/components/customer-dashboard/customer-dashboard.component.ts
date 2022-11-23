@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CustomerDashboardComponent implements OnInit {
 
-  views = [false, false, false, false, false];
+  views = [false, false, false, false, false, false];
 
   user!: User;
   // fName1!: string;
@@ -34,6 +34,8 @@ export class CustomerDashboardComponent implements OnInit {
     } else {
       this.setView(0);
     }
+
+    this.checkClassesForPastDate();
   }
 
   setView(num: number): void {

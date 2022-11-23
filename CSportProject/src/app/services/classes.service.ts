@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay, tap, BehaviorSubject, ObservedValueOf, of } from 'rxjs';
 import { Class } from '../Classes';
+import { TransferState, makeStateKey, StateKey } from '@angular/platform-browser';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,10 +23,34 @@ export class ClassesService {
 
   private serverURL = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  data$!: Observable<Class[]> | null;
+
+  private isServer = false;
+
+  constructor(
+    private http: HttpClient,
+    private tState: TransferState) { }
 
   getAllClasses(): Observable<Class[]> {
     return this.http.get<Class[]>(this.serverURL + "/classcollections")
+  }
+
+  getAllClasses2(): Observable<Class[]> {
+    if (!this.data$) {
+      this.data$ = this.http.get<Class[]>(this.serverURL + "/classcollections").pipe(tap(), shareReplay(1), tap());
+    }
+    return this.data$;
+  }
+
+  get classes() {
+    if (!this.data$) {
+      this.data$ = this.http.get<Class[]>(this.serverURL + "/classcollections").pipe(tap(), shareReplay(1), tap());
+    }
+    return this.data$;
+  }
+
+  public clearClassList() {
+    this.data$ = null;
   }
 
   getClass(CID?: string): Observable<Class[]> {

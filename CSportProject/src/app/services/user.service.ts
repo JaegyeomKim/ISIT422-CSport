@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, shareReplay, tap, BehaviorSubject, ObservedValueOf } from 'rxjs';
 import { User } from '../User';
 
 const httpOptions = {
@@ -22,6 +22,8 @@ export class UserService {
 
   private serverURL = 'http://localhost:3000';
 
+  user$!: Observable<User[]> | null;
+
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<User[]> {
@@ -30,6 +32,13 @@ export class UserService {
 
   getUser(ID?: string): Observable<User[]> {
     return this.http.get<User[]>(this.serverURL + "/GetOneUser/" + ID, httpOptions);
+  }
+
+  getUser2(ID?: string): Observable<User[]> {
+    if (!this.user$) {
+      this.user$ = this.http.get<User[]>(this.serverURL + "/GetOneUser/" + ID, httpOptions).pipe(tap(), shareReplay(1), tap());
+    }
+    return this.user$;
   }
 
   addUser(user: User): Observable<User> {

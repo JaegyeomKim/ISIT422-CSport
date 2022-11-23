@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, TransferState } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +45,7 @@ import { CalenderDayComponent } from './components/calender-day/calender-day.com
 import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
 import {GooglePayButtonModule} from '@google-pay/button-angular';
 import { ClassViewCardComponent } from './components/class-view-card/class-view-card.component';
+import { NewClassViewComponent } from './components/new-class-view/new-class-view.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { ClassViewCardComponent } from './components/class-view-card/class-view-
     TransactionHistoryComponent,
     GooglePayComponent,
     ClassViewCardComponent,
+    NewClassViewComponent,
   ],
   
   imports: [

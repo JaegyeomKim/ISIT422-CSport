@@ -16,6 +16,7 @@
       <li (click)="setView(2)" [ngClass]="views[2] ? 'active' : ''">Enrolled Classes</li>
       <li (click)="setView(3)" [ngClass]="views[3] ? 'active' : ''">Available Classes</li>
       <li (click)="setView(4)" [ngClass]="views[4] ? 'active' : ''">Past Classes</li>
+      <li (click)="setView(5)" [ngClass]="views[5] ? 'active' : ''">New Available Classes</li>
       <li class="right" (click)="authService.logout()">Sign out</li>
     </ul>
 
@@ -47,5 +48,9 @@
 
   <div *ngIf="views[4]">
     <app-history-class></app-history-class>
+  </div>
+
+  <div *ngIf="views[5]">
+    <app-new-class-view></app-new-class-view>
   </div>
 </div>
