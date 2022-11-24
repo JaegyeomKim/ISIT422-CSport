@@ -137,7 +137,7 @@ export class CalenderComponent implements OnInit {
   }
 
   returnDay(day: Day) {
-    console.log(day);
+    //console.log(day);
   }
 
   putEventsOnCalender(): void {
@@ -165,9 +165,9 @@ export class CalenderComponent implements OnInit {
 
     this.classes.forEach(x => {
       const dateHere = new Date(x.Date);
-      console.log(dateHere, 'date');
+      //console.log(dateHere, 'date');
       const utcDateHere = new Date(dateHere.getUTCFullYear(), dateHere.getUTCMonth(), dateHere.getUTCDate(), 0,0,0);
-      console.log(utcDateHere, 'utc date');
+      //console.log(utcDateHere, 'utc date');
       if (this.daysInterface[dateHere.getUTCDate() - 1].utcDate === utcDateHere.toUTCString()) {
         this.daysInterface[dateHere.getUTCDate() - 1].classIDsAvailable?.push(x);
       }

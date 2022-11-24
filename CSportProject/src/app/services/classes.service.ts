@@ -33,7 +33,7 @@ export class ClassesService {
 
   getAllClasses2(): Observable<Class[]> {
     if (!this.data$) {
-      console.log('Called server for classes');
+      console.log('%cCalled server for classes', 'background: #000000; color: #FFFFFF');
       this.data$ = this.http.get<Class[]>(this.serverURL + "/classcollections").pipe(tap(), shareReplay(1), tap());
     }
     return this.data$;

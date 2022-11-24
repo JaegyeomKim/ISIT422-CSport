@@ -34,6 +34,7 @@ export class UserService {
 
   getAllUsers2(): Observable<User[]> {
     if (!this.users$) {
+      console.log('%cCalled server for all users', 'background: #000000; color: #FFFFFF');
       this.users$ = this.http.get<User[]>(this.serverURL + "/usercollections").pipe(tap(), shareReplay(1), tap());
     }
 
@@ -46,6 +47,7 @@ export class UserService {
 
   getUser2(ID?: string): Observable<User[]> {
     if (!this.user$) {
+      console.log('%cCalled server for one user', 'background: #000000; color: #FFFFFF');
       this.user$ = this.http.get<User[]>(this.serverURL + "/GetOneUser/" + ID, httpOptions).pipe(tap(), shareReplay(1), tap());
     }
     return this.user$;

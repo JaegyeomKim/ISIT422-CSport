@@ -87,6 +87,7 @@ button {
 
 .Display{
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 /* ng-deep is combinator can be used to force a style down to child component (overrides the input fills color)*/

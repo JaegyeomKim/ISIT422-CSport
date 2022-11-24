@@ -28,6 +28,7 @@ export class PaymentService {
 
   getAllTransactions2(): Observable<Transaction[]> {
     if (!this.transactionData$) {
+      console.log('%cCalled server for all transactions', 'background: #000000; color: #FFFFFF');
       this.transactionData$ = this.http.get<Transaction[]>(this.serverURL + "/transactioncollections").pipe(tap(), shareReplay(1), tap());
     }
     return this.transactionData$;
