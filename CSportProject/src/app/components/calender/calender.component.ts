@@ -51,7 +51,7 @@ export class CalenderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.getUser(this.authService.userData.UID).subscribe(x => {
+    this.userService.getUser2(this.authService.userData.UID).subscribe(x => {
       this.user = x[0];
       var date = new Date();
       this.currentYear = date.getFullYear();
@@ -130,7 +130,7 @@ export class CalenderComponent implements OnInit {
       }
     }
 
-    this.classService.getAllClasses().subscribe(x => {
+    this.classService.getAllClasses2().subscribe(x => {
       this.classes = x;
       this.putEventsOnCalender();
     });

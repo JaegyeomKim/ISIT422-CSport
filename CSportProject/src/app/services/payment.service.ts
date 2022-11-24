@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap, shareReplay } from 'rxjs';
 import { Transaction } from '../Transaction';
 
 const httpOptions = {
@@ -11,6 +11,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PaymentService {
+
+  transactionData$!: Observable<Transaction[]> | null;
 
   private serverURL = 'http://localhost:3000';
 
@@ -23,12 +25,19 @@ export class PaymentService {
   getAllTransactions(): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.serverURL + "/transactioncollections")
   }
-  editTransaciton(onePayment: Transaction): Observable<Transaction> { 
+
+  getAllTransactions2(): Observable<Transaction[]> {
+    if (!this.transactionData$) {
+      this.transactionData$ = this.http.get<Transaction[]>(this.serverURL + "/transactioncollections").pipe(tap(), shareReplay(1), tap());
+    }
+    return this.transactionData$;
+  }
+
+  editTransaction(onePayment: Transaction): Observable<Transaction> { 
     return this.http.put<Transaction>(this.serverURL + "/EditTransaction", onePayment, httpOptions);
   }
 
   deleteTransaction(_id?: string): Observable<Transaction> {
     return this.http.delete<Transaction>(this.serverURL + "/DeleteTransaction/" + _id, httpOptions);
   }
-
 }

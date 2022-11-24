@@ -45,7 +45,6 @@ import { CalenderDayComponent } from './components/calender-day/calender-day.com
 import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
 import {GooglePayButtonModule} from '@google-pay/button-angular';
 import { ClassViewCardComponent } from './components/class-view-card/class-view-card.component';
-import { NewClassViewComponent } from './components/new-class-view/new-class-view.component';
 
 
 @NgModule({
@@ -72,8 +71,7 @@ import { NewClassViewComponent } from './components/new-class-view/new-class-vie
     CalenderDayComponent,
     TransactionHistoryComponent,
     GooglePayComponent,
-    ClassViewCardComponent,
-    NewClassViewComponent,
+    ClassViewCardComponent
   ],
   
   imports: [

@@ -5,6 +5,7 @@ import { Class } from 'src/app/Classes';
 import { ClassViewComponent } from '../class-view/class-view.component';
 import { ClassesService } from 'src/app/services/classes.service';
 import { UserService } from 'src/app/services/user.service';
+import { first } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CustomerDashboardComponent implements OnInit {
 
-  views = [false, false, false, false, false, false];
+  views = [false, false, false, false, false];
 
   user!: User;
   // fName1!: string;
@@ -35,6 +36,10 @@ export class CustomerDashboardComponent implements OnInit {
       this.setView(0);
     }
 
+    //Get classes and cache data. User is being cached on login.
+    this.classService.getAllClasses2().pipe(first()).subscribe();
+
+
     this.checkClassesForPastDate();
   }
 
@@ -51,7 +56,7 @@ export class CustomerDashboardComponent implements OnInit {
     if (this.user.ClassIDList.length <= 0) {
       return;
     }
-    this.classService.getAllClasses().subscribe(x => this.checkClassList(x));
+    //this.classService.getAllClasses().subscribe(x => this.checkClassList(x));
   }
 
   checkClassList(classes: Class[]) {

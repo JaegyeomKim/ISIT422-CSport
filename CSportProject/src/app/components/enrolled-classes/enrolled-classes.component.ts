@@ -36,7 +36,7 @@ export class EnrolledClassesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.userService.getUser(this.authService.userData.UID).pipe(first()).subscribe(data => this.getUserHere(data));
+    this.userService.getUser2(this.authService.userData.UID).pipe(first()).subscribe(data => this.getUserHere(data));
   }
 
   private getUserHere(user: User[]) {
@@ -59,7 +59,7 @@ export class EnrolledClassesComponent implements OnInit {
     if (classIndex !== -1) {
       this.user.ClassIDList.splice(classIndex, 1);      
     }
-    this.transactionService.getAllTransactions().pipe(first()).subscribe(data => this.dropTransactionHere(data, classID));  
+    this.transactionService.getAllTransactions2().pipe(first()).subscribe(data => this.dropTransactionHere(data, classID));  
   }
 
   dropTransactionHere(allTransaction: Transaction[], classID: string){
@@ -86,6 +86,6 @@ export class EnrolledClassesComponent implements OnInit {
   private refreshClassList() {
     this.loading = true;
     this.tempClasses = [];
-    this.classesService.getAllClasses().pipe(first()).subscribe(data => this.getClassesThenShowThem(data));
+    this.classesService.getAllClasses2().pipe(first()).subscribe(data => this.getClassesThenShowThem(data));
   }
 }

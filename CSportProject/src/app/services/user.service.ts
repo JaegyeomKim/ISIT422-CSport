@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, shareReplay, tap, BehaviorSubject, ObservedValueOf } from 'rxjs';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { User } from '../User';
 
 const httpOptions = {
@@ -39,6 +39,10 @@ export class UserService {
       this.user$ = this.http.get<User[]>(this.serverURL + "/GetOneUser/" + ID, httpOptions).pipe(tap(), shareReplay(1), tap());
     }
     return this.user$;
+  }
+
+  public clearUserData() {
+    this.user$ = null;
   }
 
   addUser(user: User): Observable<User> {

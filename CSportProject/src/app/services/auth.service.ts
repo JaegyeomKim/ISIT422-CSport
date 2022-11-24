@@ -45,7 +45,7 @@ export class AuthService {
   login(email: string, password: string) { //Login with email and password.
     this.aAuth.signInWithEmailAndPassword(email, password)
       .then(value => {
-        this.userService.getUser(value.user?.uid).subscribe(user => {
+        this.userService.getUser2(value.user?.uid).subscribe(user => {
           this.newUserData = user;
           this.userData = user[0];
           if (this.userData.Role != "1" && this.userData.Role != "0") {

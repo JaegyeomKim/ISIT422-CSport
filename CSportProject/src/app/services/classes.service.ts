@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, shareReplay, tap, BehaviorSubject, ObservedValueOf, of } from 'rxjs';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { Class } from '../Classes';
-import { TransferState, makeStateKey, StateKey } from '@angular/platform-browser';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,11 +24,8 @@ export class ClassesService {
 
   data$!: Observable<Class[]> | null;
 
-  private isServer = false;
-
   constructor(
-    private http: HttpClient,
-    private tState: TransferState) { }
+    private http: HttpClient) { }
 
   getAllClasses(): Observable<Class[]> {
     return this.http.get<Class[]>(this.serverURL + "/classcollections")
@@ -37,19 +33,13 @@ export class ClassesService {
 
   getAllClasses2(): Observable<Class[]> {
     if (!this.data$) {
+      console.log('Called server for classes');
       this.data$ = this.http.get<Class[]>(this.serverURL + "/classcollections").pipe(tap(), shareReplay(1), tap());
     }
     return this.data$;
   }
 
-  get classes() {
-    if (!this.data$) {
-      this.data$ = this.http.get<Class[]>(this.serverURL + "/classcollections").pipe(tap(), shareReplay(1), tap());
-    }
-    return this.data$;
-  }
-
-  public clearClassList() {
+  public clearClassData() {
     this.data$ = null;
   }
 
@@ -61,7 +51,7 @@ export class ClassesService {
     return this.http.post<Class>(this.serverURL + "/classcollections", oneClass, httpOptions);
   }
 
-  editClass(oneClass: Class): Observable<Class> { //this does not work right now - sean
+  editClass(oneClass: Class): Observable<Class> {
     return this.http.put<Class>(this.serverURL + "/EditClass", oneClass, httpOptions);
   }
 
