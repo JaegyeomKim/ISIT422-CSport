@@ -45,7 +45,7 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   getClasses(){
-    this.classService.getAllClasses().subscribe(classList => this.displayClasses(classList))
+    this.classService.getAllClasses2().subscribe(classList => this.displayClasses(classList))
   }
 
   displayClasses(classList: Class[]){

@@ -24,10 +24,20 @@ export class UserService {
 
   user$!: Observable<User[]> | null;
 
+  users$!: Observable<User[]> | null;
+
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.serverURL + "/usercollections")
+  }
+
+  getAllUsers2(): Observable<User[]> {
+    if (!this.users$) {
+      this.users$ = this.http.get<User[]>(this.serverURL + "/usercollections").pipe(tap(), shareReplay(1), tap());
+    }
+
+    return this.users$;
   }
 
   getUser(ID?: string): Observable<User[]> {

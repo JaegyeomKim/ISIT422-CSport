@@ -52,7 +52,7 @@ export class AdminsUsersinfoUnitComponent implements OnInit {
   constructor(private classService : ClassesService) { }
 
   ngOnInit(): void {
-    this.classService.getAllClasses().subscribe((classes) => this.classes = classes);
+    this.classService.getAllClasses2().subscribe((classes) => this.classes = classes);
     if(this.user.Role == "0"){this.user_status = "Admin"};
     this.fuser_name = this.user.Fname;
     this.luser_name = this.user.Lname;

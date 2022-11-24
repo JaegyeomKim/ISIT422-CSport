@@ -27,7 +27,7 @@ export class AccountComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUser(this.authService.userData.UID).pipe(first()).subscribe(data => this.fillValues(data));
+    this.userService.getUser2(this.authService.userData.UID).pipe(first()).subscribe(data => this.fillValues(data));
   }
 
   setView(num: number): void {

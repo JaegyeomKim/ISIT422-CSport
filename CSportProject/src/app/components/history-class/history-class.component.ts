@@ -41,12 +41,12 @@ export class HistoryClassComponent implements OnInit {
   user!: User;
 
   ngOnInit(): void {
-    this.userService.getUser(this.authService.userData.UID).subscribe(x => this.showClasses(x));
+    this.userService.getUser2(this.authService.userData.UID).subscribe(x => this.showClasses(x));
   }
 
   showClasses(user: User[]) {
     this.user = user[0];
-    this.classService.getAllClasses().subscribe(x => {
+    this.classService.getAllClasses2().subscribe(x => {
       this.classes = x;
       this.tempClasses = this.classes.filter(element => this.user.ClassHistory.includes(element._id!));
       this.loading = false;

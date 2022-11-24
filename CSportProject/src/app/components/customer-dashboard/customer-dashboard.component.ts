@@ -56,7 +56,7 @@ export class CustomerDashboardComponent implements OnInit {
     if (this.user.ClassIDList.length <= 0) {
       return;
     }
-    //this.classService.getAllClasses().subscribe(x => this.checkClassList(x));
+    //this.classService.getAllClasses2().subscribe(x => this.checkClassList(x));
   }
 
   checkClassList(classes: Class[]) {

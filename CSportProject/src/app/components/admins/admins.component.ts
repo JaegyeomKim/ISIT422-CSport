@@ -14,7 +14,7 @@ export class AdminsComponent implements OnInit {
   constructor(private classService: ClassesService) { }
 
   ngOnInit(): void {
-    this.classService.getAllClasses().subscribe((classes) => this.classes = classes)
+    this.classService.getAllClasses2().subscribe((classes) => this.classes = classes)
   }
 
   addClass_DB(class2 : Class){
@@ -28,6 +28,4 @@ export class AdminsComponent implements OnInit {
   onUpdateClass_DB(class2: Class){
     this.classService.editClass(class2).subscribe();
   }
-
-
 }
