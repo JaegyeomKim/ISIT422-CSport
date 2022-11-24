@@ -23,7 +23,7 @@ export class AdminsUsersinfoComponent implements OnInit {
     private classService : ClassesService) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe((users) => this.users = users);
+    this.userService.getAllUsers2().subscribe((users) => this.users = users);
     this.classService.getAllClasses2().subscribe((classes)=>this.classes = classes)
     //if get class Name at class side that would be more easy 
   }
