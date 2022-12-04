@@ -2,15 +2,31 @@
     (onAddClass)="addClass_DB($event)"
 ></app-admin-add-class>
 
-
-
-<app-admins-classinfo
-    *ngFor="let class of classes"
-    [class] = "class"
-    (onDeleteClass)="deleteClass_DB(class)"
-    (onUpateClass)="onUpdateClass_DB(class)"
-></app-admins-classinfo>
-
+<table>
+    <thead>
+    <tr>            
+        <th scope="col">Name</th>
+        <th scope="col">Descript</th>
+        <th scope="col">STime</th>
+        <th scope="col">ETime</th>
+        <th scope="col">Date</th>
+        <th scope="col">ClassSeats</th>
+        <th scope="col">$ Price</th>
+        <th scope="col">Delete/Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let class of classes">
+            <td>
+            <app-admins-classinfo
+            [class] = "class"
+            (onDeleteClass)="deleteClass_DB(class)"
+            (onUpateClass)="onUpdateClass_DB(class)"
+            ></app-admins-classinfo>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 

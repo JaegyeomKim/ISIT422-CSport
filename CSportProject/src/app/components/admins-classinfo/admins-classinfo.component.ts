@@ -18,6 +18,10 @@ export class AdminsClassinfoComponent implements OnInit {
   @Output()
   onAddClass : EventEmitter<Class> = new EventEmitter();
 
+  columnsToDisplay = ['name', 'Descript', 'STime', 'ETime', 'Date', 'ClassSeats', "Price", "Delete/Edit"];
+
+
+
   check_edit : boolean = false;
   name_fix !: string;
   desc_fix !: string;
@@ -31,9 +35,6 @@ export class AdminsClassinfoComponent implements OnInit {
 
   faTimes = faTimes; // 2. From angular-fontawesome
   faPenNib = faPenNib; // 2. From angular-fontawesome
-
-  columnsToDisplay = ['name', 'description', 'Stime', 'Etime', 'date','ClassSeats', 'price', 'D/E'];
-
 
   constructor() { }
 

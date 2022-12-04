@@ -1,19 +1,5 @@
-<Table class="type11">
-    <thead>
-        <tr>            
-            <th scope="col">Name</th>
-            <th scope="col">Descript</th>
-            <th scope="col">STime</th>
-            <th scope="col">ETime</th>
-            <th scope="col">Date</th>
-            <th scope="col">ClassSeats</th>
-            <th scope="col">$ Price</th>
-            <th scope="col">Delete/Edit</th>
-        </tr>
-    </thead>
-    <tbody
-        (click)="onDisplay_Update_function(class)">
-            <td>{{class.Name}}</td>
+
+            <td (click)="onDisplay_Update_function(class)">{{class.Name}}</td>
             <td>{{class.Descript}}</td>
             <td>{{class.STime}}</td>
             <td>{{class.ETime}}</td>
@@ -23,10 +9,8 @@
             <td (click)="onDelete(class)"><fa-icon 
                 [ngStyle]="{'color':'red'}" [icon]="faTimes"></fa-icon>
             </td>
-        </tbody>
 
-        <tbody
-        class="modifiy" *ngIf="check_edit">
+        <div class="modifiy" *ngIf="check_edit">
             <td><input type="text" name="name_fix" [(ngModel)]="name_fix" id="name_fix" placeholder="Type Class Name: " /> </td>
             <td><textarea id="input" name="n_admin_note" rows="5" cols="20" [(ngModel)]="desc_fix"></textarea></td>
             <td><input type="time" name="start_fix" [(ngModel)]="start_fix" id="start_fix"/></td>
@@ -38,55 +22,4 @@
                 [ngStyle]="{'color':'yellowgreen'}"
                 [icon]="faPenNib"></fa-icon>
             </td>
-        </tbody>
-    </Table>
-
-
-
-
-    <!-- <Table class="type11">
-        <thead>
-            <tr>            
-                <th scope="col">Name</th>
-                <th scope="col">Descript</th>
-                <th scope="col">STime</th>
-                <th scope="col">ETime</th>
-                <th scope="col">Date</th>
-                <th scope="col">ClassSeats</th>
-                <th scope="col">$ Price</th>
-                <th scope="col">Delete/Edit</th>
-            </tr>
-        </thead>
-        <tbody
-            (click)="onDisplay_Update_function(class)">
-            <tr>
-                <td>{{class.Name}}</td>
-                <td>{{class.Descript}}</td>
-                <td>{{class.STime}}</td>
-                <td>{{class.ETime}}</td>
-                <td>{{class.Date}}</td>
-                <td>{{class.ClassSeats}}</td>
-                <td>${{class.Price}}</td>
-                <td (click)="onDelete(class)"><fa-icon 
-                    [ngStyle]="{'color':'red'}" [icon]="faTimes"></fa-icon>
-                </td>
-            </tr>
-            </tbody>
-    
-            <tbody
-            class="modifiy" *ngIf="check_edit">
-            <tr>
-                <td><input type="text" name="name_fix" [(ngModel)]="name_fix" id="name_fix" placeholder="Type Class Name: " /> </td>
-                <td><textarea id="input" name="n_admin_note" rows="5" cols="20" [(ngModel)]="desc_fix"></textarea></td>
-                <td><input type="time" name="start_fix" [(ngModel)]="start_fix" id="start_fix"/></td>
-                <td><input type="time" name="end_fix" [(ngModel)]="end_fix" id="end_fix"/></td>
-                <td><input type="date" name="Tdate" [(ngModel)]="date_fix" id="Tdate" placeholder="Type Date: " /></td>
-                <td><input type="number" name="sets_fix" [(ngModel)]="sets_fix" id="sets_fix" placeholder="Type Class Sets: " /></td>
-                <td><input type="number" name="class-price" [(ngModel)]="price_fix" id="class-price" placeholder="Type Class Price: " /></td>
-                <td (click)="onUpdate(class)"><fa-icon 
-                    [ngStyle]="{'color':'yellowgreen'}"
-                    [icon]="faPenNib"></fa-icon>
-                </td>
-            </tr>
-            </tbody>
-        </Table> -->
+        </div>
